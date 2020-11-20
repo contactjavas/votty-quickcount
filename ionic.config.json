@@ -1,0 +1,7 @@
+{
+  "name": "quickcount",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
