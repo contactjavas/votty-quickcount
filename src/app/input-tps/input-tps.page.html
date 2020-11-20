@@ -1,0 +1,87 @@
+<ion-header no-border>
+  <ion-toolbar color="primary" class="main-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Input TPS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="intro-text" padding>
+    <div class="bg">
+      <h4>Anda bertanggung jawab atas TPS di wilayah</h4>
+      <div>
+        <ion-label color="primary">
+          Kabupaten {{ user && user.kabupaten ? user.kabupaten.name : 'Bagus' }}
+        </ion-label>
+      </div>
+    </div>
+  </div>
+
+  <ion-list>
+    <ion-list-header>
+      Tambah TPS
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label position="stacked">Kecamatan</ion-label>
+      <ion-select name="kecamatan" (ionChange)="onKecamatanChange($event)" interface="action-sheet"
+        placeholder="Pilih Kecamatan">
+        <ion-select-option value="{{ kecamatan.id }}" *ngFor="let kecamatan of kecamatans">
+          {{ kecamatan.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Kelurahan</ion-label>
+      <ion-select name="kelurahan" (ionChange)="onKelurahanChange($event)" interface="action-sheet"
+        placeholder="Pilih Kelurahan / Desa">
+        <ion-select-option value="{{ kelurahan.id }}" *ngFor="let kelurahan of kelurahans">
+          {{ kelurahan.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Nama Pedukuhan (Opsional)</ion-label>
+      <ion-input name="dukuh" type="text" placeholder="Nama pedukuhan sesuai TPS (bila ada)" autocomplete="off">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Nomor RW (Opsional)</ion-label>
+      <ion-select name="rw" (ionChange)="onRwChange($event)" interface="action-sheet"
+        placeholder="Nomor RW sesuai TPS (bila ada)">
+        <ion-select-option value="0">-</ion-select-option>
+        <ion-select-option value="{{ i + 1 }}" *ngFor="let item of [].constructor(100); let i = index">
+          {{ i + 1 }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Nomor TPS</ion-label>
+      <ion-select name="tps" (ionChange)="onTpsChange($event)" interface="action-sheet" placeholder="Pilih nomor TPS">
+        <ion-select-option value="{{ i + 1 }}" *ngFor="let item of [].constructor(70); let i = index">
+          {{ i + 1 }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="footer-cta" mode="ios">
+  <ion-toolbar no-padding>
+    <ion-button expand="full" color="secondary" (click)="createTps()" no-margin>
+      <ion-icon slot="start" name="add-circle"></ion-icon>
+      Tambah TPS
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

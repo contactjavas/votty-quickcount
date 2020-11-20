@@ -1,0 +1,47 @@
+<ion-header no-border>
+  <ion-toolbar color="primary" class="main-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Riwayat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="intro-text" padding>
+    <div class="bg">
+      <h4>Anda bertanggung jawab atas TPS di wilayah</h4>
+      <div>
+        <ion-label color="primary">
+          Kabupaten {{ user && user.kabupaten ? user.kabupaten.name : 'Sleman' }}
+        </ion-label>
+      </div>
+    </div>
+  </div>
+
+  <ion-list lines="inset">
+    <ion-list-header>
+      <label>
+        Daftar Riwayat
+      </label>
+    </ion-list-header>
+    <ion-item *ngFor="let tps of tpsList">
+      <ion-label>
+        <ion-text>
+          <h3 text-wrap>{{ tps ? tps.name : 'TPS Kembangan' }}</h3>
+        </ion-text>
+        <ion-text color="medium">
+          <p>Total suara: {{ tps ? tps.total_votes : 0 }}</p>
+        </ion-text>
+      </ion-label>
+      <ion-note slot="end" color="{{ tps.status.id ? 'success' : 'secondary' }}">
+        {{ tps ? tps.status.name : '' }}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

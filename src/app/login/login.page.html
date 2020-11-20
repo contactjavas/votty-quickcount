@@ -1,0 +1,31 @@
+<ion-content padding class="auth-ui">
+  <div class="bg-image"></div>
+  <div class="overlay has-gradient"></div>
+
+  <div class="flex-container">
+    <div>
+      <h2 class="page-title" text-center>Rekap Suara Pemilu 2019</h2>
+      <img class="logo" alt="Jasa Tukang" src="assets/images/logo/logo-28.png" />
+
+      <form [formGroup]="loginForm" (submit)="login()">
+        <ion-item>
+          <ion-icon name="person" color="light" slot="start"></ion-icon>
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input name="username" formControlName="username" type="text" placeholder="Masukkan username" autocomplete="off">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="lock" color="light" slot="start"></ion-icon>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input name="password" formControlName="password" type="password" placeholder="Masukkan password" autocomplete="off">
+          </ion-input>
+        </ion-item>
+
+        <ion-button type="submit" expand="block" fill="solid" color="secondary" shape="round" class="login-button">
+          Masuk
+        </ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>

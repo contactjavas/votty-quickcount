@@ -1,0 +1,36 @@
+<ion-header no-border>
+  <ion-toolbar color="primary" class="main-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/app/tabs/input-tps"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      TPS {{ createTps.tps }} Dukuh {{ createTps.dukuh }}
+      {{ createTps.rw ? "RW " + createTps.rw : "" }} Desa
+      {{ createTps.kelurahan.name }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full">
+    <form method="POST" action="">
+      <ion-item *ngFor="let caleg of calegs">
+        <ion-avatar slot="start">
+          <img src="{{ caleg.photo }}" alt="{{ caleg.name }}" />
+        </ion-avatar>
+        <ion-label position="stacked">{{ caleg.name }}</ion-label>
+        <ion-input type="number" name="votes_{{ caleg.id }}" value="{{ caleg.votes }}" color="primary"
+          class="votes-input"></ion-input>
+      </ion-item>
+    </form>
+  </ion-list>
+</ion-content>
+
+<ion-footer class="footer-cta" mode="ios">
+  <ion-toolbar no-padding>
+    <ion-button expand="full" color="secondary" (click)="save()" no-margin>
+      Simpan Perolehan Suara
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
