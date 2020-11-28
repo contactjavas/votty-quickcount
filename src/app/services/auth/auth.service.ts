@@ -48,6 +48,7 @@ export class AuthService {
     this.storage.remove("kelurahans");
 
     this.menus = this.menu.notLoggedIn;
+    this.setLoggedInState(false);
     this.router.navigateByUrl("/login");
   }
 

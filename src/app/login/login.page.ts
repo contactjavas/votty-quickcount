@@ -53,6 +53,7 @@ export class LoginPage implements OnInit {
         this.storage.set("user", res.user);
 
         loading.dismiss();
+        this.authService.setLoggedInState(true);
         this.router.navigateByUrl("/app/tabs/input-tps");
       },
       (err: any) => {
